@@ -1,0 +1,1 @@
+# This file show messages with color (ok, warning, error, info)

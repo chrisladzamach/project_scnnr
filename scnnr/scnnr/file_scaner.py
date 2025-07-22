@@ -1,0 +1,1 @@
+# This file, scan and count the number of files and extensions

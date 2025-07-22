@@ -1,0 +1,1 @@
+# This file detect and analyze comments in a file
