@@ -1,9 +1,11 @@
 from scnnr.auth import solicitar_contraseña
-from scnnr.file_scanner import contar_archivos_por_extension
+from scnnr.file_scanner import scan_files, count_files
 from scnnr.comment_parser import listar_comentarios, mostrar_comentarios_con_ubicacion, filtrar_comentarios_por_archivo
 from scnnr.file_editor import modificar_comentario, eliminar_comentario
 from ui.display import success, warning, error
 import questionary
+
+#comentario de prueba
 
 def main_menu():
 	while True:
@@ -21,16 +23,18 @@ def main_menu():
 		).ask()
 
 		if result == "Listar todos los comentarios":
-			comentarios = listar_comentarios()
+			archivo = questionary.text("Ruta del archivo .py: ").ask()
+			comentarios = listar_comentarios(archivo)
 			if comentarios:
-				for comentario in comentarios:
-					print(comentario)
-				success(f"{len(comentario)} comentarios encontrados.")
+				for linea, comentario in comentarios:
+					print(f"[Línea {linea}] {comentario}")
+				success(f"{len(comentarios)} comentarios encontrados.")
 			else: 
 				error("No se encontraron comentarios.")
-					
+
 		elif result == "Mostrar ruta y línea":
-			comentarios = mostrar_comentarios_con_ubicacion()
+			ruta = questionary.text("Ruta base para buscar comentarios: ").ask() or "."
+			comentarios = mostrar_comentarios_con_ubicacion(ruta)
 			if comentarios:
 				for com in comentarios:
 					print(f"{com['archivo']}:{com['linea']} -> {com['contenido']}")
@@ -43,10 +47,7 @@ def main_menu():
 				archivo = questionary.text("Ruta del archivo: ").ask()
 				linea = int(questionary.text("Número de línea: ").ask())
 				nuevo = questionary.text("Nuevo comentario: ").ask()
-				if modificar_comentario(archivo, linea, nuevo):
-					success("Comentario modificado con éxito.")
-				else:
-					error("No se pudo modificar el comentario.")
+				modificar_comentario(archivo, linea, nuevo)
 			else:
 				error("Acceso denegado.")
 
@@ -54,10 +55,7 @@ def main_menu():
 			if solicitar_contraseña():
 				archivo = questionary.text("Ruta del archivo: ").ask()
 				linea = int(questionary.text("Número de línea: ").ask())
-				if eliminar_comentario(archivo, linea):
-					success("Comentario eliminado con éxito.")
-				else:
-					error("No se pudo eliminar el comentario.")
+				eliminar_comentario(archivo, linea)
 			else:
 				error("Acceso denegado.")
 
@@ -73,7 +71,8 @@ def main_menu():
 
 		elif result == "Contar archivos por extensión":
 			ruta = questionary.text("Ruta base (por defecto .): ").ask() or "."
-			conteo = contar_archivos_por_extension(ruta)
+			file_dict = scan_files(ruta)
+			conteo = count_files(file_dict)
 			if conteo:
 				for ext, cantidad in conteo.items():
 					print(f"{ext}: {cantidad}")
