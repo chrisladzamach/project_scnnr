@@ -1,3 +1,4 @@
+# comentario de prueba.
 def solicitar_contraseña():
   clave_correcta = "12351235"
   intentos = 3 
@@ -11,3 +12,5 @@ def solicitar_contraseña():
   
   print("Demasiados intentos fallidos. Acceso denegado.")
   return False
+
+# Segundo comentario de prueba

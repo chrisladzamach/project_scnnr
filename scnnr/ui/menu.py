@@ -26,6 +26,7 @@ def main_menu():
 			archivo = questionary.text("Ruta del archivo .py: ").ask()
 			comentarios = listar_comentarios(archivo)
 			if comentarios:
+				print(comentarios)  # para ver qué contiene exactamente
 				for linea, comentario in comentarios:
 					print(f"[Línea {linea}] {comentario}")
 				success(f"{len(comentarios)} comentarios encontrados.")

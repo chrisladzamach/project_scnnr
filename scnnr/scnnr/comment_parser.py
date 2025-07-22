@@ -23,11 +23,14 @@ def extraer_comentarios(archivo):
   return comentarios
 
 
-def listar_comentarios(archivo):
-  """
-  Lista solo los textos de los comentarios extraídos.
-  """
-  return [comentario for _, comentario in extraer_comentarios(archivo)]
+def listar_comentarios(ruta_archivo):
+  comentarios = []
+  with open(ruta_archivo, 'r', encoding='utf-8') as f:
+    for i, linea in enumerate(f, 1):  # empieza en 1 para que sea legible
+      linea_limpia = linea.strip()
+      if linea_limpia.startswith('#'):
+        comentarios.append((i, linea_limpia))
+  return comentarios
 
 
 def mostrar_comentarios_con_ubicacion(archivo):
