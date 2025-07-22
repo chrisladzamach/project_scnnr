@@ -1,3 +1,4 @@
+from scnnr.auth import solicitar_contraseña
 import questionary
 from ui.display import success, warning, error
 
@@ -23,7 +24,10 @@ def main_menu():
         elif result == "Modificar un comentario":
             warning("Función aún no implementada: editar comentarios.")
         elif result == "Eliminar un comentario":
-            error("Función aún no implementada: eliminar comentarios.")
+            if solicitar_contraseña():
+                error("Función aún no implementada: eliminar comentarios.")
+            else:
+                error("Acceso denegado.")
         elif result == "Filtrar por archivo o carpeta":
             warning("Función aún no implementada: filtrado.")
         elif result == "Contar archivos por extensión":
