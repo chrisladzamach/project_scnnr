@@ -1,22 +1,33 @@
 # scnnr
 
-Escáner de comentarios en archivos fuente.
+`scnnr` es una herramienta de línea de comandos para escanear proyectos en busca de archivos, comentarios, y editar o eliminar contenido innecesario.
 
-## Funcionalidades
+## Características
 
-- Escanea archivos por extensión.
-- Detecta y analiza comentarios.
-- Permite eliminar comentarios innecesarios.
-- Interfaz en terminal con navegación por teclas.
+- Conteo de archivos por extensión
+- Detección de comentarios en archivos fuente
+- Eliminación de comentarios
+- Autenticación por contraseña
+- Interfaz por consola amigable
 
-## Estructura
-
-- `main.py`: Punto de entrada
-- `scnnr/`: Lógica del escaneo y manipulación de archivos
-- `ui/`: Interfaz de usuario por consola
-- `utils/`: Funciones auxiliares
-
-## Requisitos
+## Instalación
 
 ```bash
+git clone https://github.com/tu_usuario/scnnr.git
+cd scnnr
 pip install -r requirements.txt
+
+
+```bash
+scnnr/
+├── main.py
+├── scnnr/
+│   ├── auth.py
+│   ├── comment_parser.py
+│   ├── file_editor.py
+│   └── ...
+├── ui/
+│   └── ...
+├── utils/
+│   └── ...
+└── tests/
