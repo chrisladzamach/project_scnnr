@@ -62,7 +62,7 @@ def main_menu():
 
 		elif result == "Filtrar por archivo o carpeta":
 			ruta = questionary.text("Ruta del archivo o carpeta: ").ask()
-			comentarios = filtrar_comentarios_por_archivo(ruta)
+			comentarios = filtrar_comentarios_por_archivo([ruta])
 			if comentarios:
 				for c in comentarios:
 					print(f"{c['archivo']}:{c['linea']} -> {c['contenido']}")
