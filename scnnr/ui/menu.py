@@ -18,20 +18,23 @@ def main_menu():
         ).ask()
 
         if result == "Listar todos los comentarios":
-            success("Función aún no implementada: listar todos los comentarios.")
+            success("Función aún no implementada: Listar todos los comentarios.")
         elif result == "Mostrar ruta y línea":
-            warning("Función aún no implementada: mostrar ruta y línea.")
+            warning("Función aún no implementada: Mostrar ruta y línea.")
         elif result == "Modificar un comentario":
-            warning("Función aún no implementada: editar comentarios.")
+            if solicitar_contraseña():
+                warning("Función aún no implementada: Editar comentarios.")
+            else:
+                error("Acceso denegado.")
         elif result == "Eliminar un comentario":
             if solicitar_contraseña():
-                error("Función aún no implementada: eliminar comentarios.")
+                warning("Función aún no implementada: Eliminar comentarios.")
             else:
                 error("Acceso denegado.")
         elif result == "Filtrar por archivo o carpeta":
-            warning("Función aún no implementada: filtrado.")
+            success("Función aún no implementada: Filtrado.")
         elif result == "Contar archivos por extensión":
-            warning("Función aún no implementada: conteo de extensiones.")
+            success("Función aún no implementada: Conteo de extensiones.")
         elif result == "Salir":
             print("\nSaliendo del sistema...\n")
             break
