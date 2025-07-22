@@ -1,12 +1,16 @@
 from rich.console import Console
+from rich.text import Text
 
 console = Console()
 
-def success(msg: str):
-  console.print(f"[bold green] {msg}[/bold green]")
+def success(message: str):
+    console.print(Text(f"{message}", style="bold green"))
 
-def warning(msg: str):
-  console.print(f"[bold yellow] {msg}[/bold yellow]")
+def warning(message: str):
+    console.print(Text(f"{message}", style="bold yellow"))
 
-def error(msg: str):
-  console.print(f"[bold red]{msg}[/bold red]")
+def error(message: str):
+    console.print(Text(f"{message}", style="bold red"))
+
+def info(message: str):
+    console.print(Text(f"{message}", style="bold blue"))
